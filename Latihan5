@@ -1,0 +1,91 @@
+namespace Latihan5
+{
+
+    internal class Program
+    {
+
+        static bool cekPrima(int bilangan)
+        {
+
+            if (bilangan <= 1)
+            {
+                return false;
+            }
+            else if (bilangan == 2)
+            {
+                return true;
+            }
+            else if (bilangan % 2 == 0)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 3; i <= Math.Sqrt(bilangan);i += 2)
+                {
+                    if (bilangan % i == 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+
+        }
+
+        static void hitungTotalPrima(List<int> prima, out int totalPrima)
+        {
+            int totalP = 0;
+            foreach(int bil in prima)
+            {
+                totalP += bil;
+            }
+            totalPrima = totalP;
+        }
+
+        public static void Main()
+        {
+
+            List<int> bilanganPrima = new List<int>();
+            int totalPrima;
+
+            Console.WriteLine("Input (Masukkan -1 untuk berhenti): ");
+            do
+            {
+                int bil = int.Parse(Console.ReadLine());
+                if (bil != -1)
+                {
+                    if (cekPrima(bil))
+                    {
+                        bilanganPrima.Add(bil);
+                    }
+                } else
+                {
+                    break;
+                }
+            } while (true);
+
+
+            if (bilanganPrima.Count == 0)
+            {
+                Console.WriteLine("\nPenjumlahan bilangan prima: tidak ada bilangan prima ditentukan");
+            }
+            else
+            {
+                hitungTotalPrima(bilanganPrima, out totalPrima);
+                Console.WriteLine("\nPenjumlahan bilangan prima: ");
+                Console.Write(bilanganPrima[0]);
+                for (int i = 1; i < bilanganPrima.Count; i++)
+                {
+                    Console.Write(" + " + bilanganPrima[i]);
+                }
+                Console.Write(" = " + totalPrima);
+            }
+
+            Console.ReadLine();
+
+        }
+
+    }
+
+}
