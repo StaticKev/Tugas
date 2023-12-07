@@ -1,0 +1,66 @@
+namespace Latihan4
+{
+
+    internal class Program
+    {
+
+        public static void Main()
+        {
+            Console.Write("Jumlah kendaraan yang terdeteksi kamera = ");
+            int jumlahKendaraan = int.Parse(Console.ReadLine());
+            List<string> platUnik = new List<string>();
+            List<string> platDuplikatUnik = new List<string>();
+            int jumlahPlatGanda = 0;
+
+            for (int i = 1; i <= jumlahKendaraan; i++)
+            {
+                Console.Write("Plat #" + i + " = ");
+                string inputPlat = Console.ReadLine();
+                bool duplikat = false;
+                foreach (string plat in platUnik)
+                {
+                    if (inputPlat == plat)
+                    {
+                        duplikat = true;
+                        break;
+                    }
+                }
+                if (duplikat)
+                {
+                    jumlahPlatGanda++;
+                    bool sudahAda = false;
+                    
+                    foreach (string plat in platDuplikatUnik)
+                    {
+                        if (inputPlat == plat)
+                        {
+                            sudahAda = true;
+                        }
+                    }
+
+                    if (!sudahAda)
+                    {
+                        platDuplikatUnik.Add(inputPlat);
+                    }
+                }
+                else
+                {
+                    platUnik.Add(inputPlat);
+                }
+            }
+
+            Console.WriteLine("\nTotal plat ganda = " + jumlahPlatGanda);
+            Console.WriteLine("Daftar plat ganda adalah");
+
+            foreach (string plat in platDuplikatUnik)
+            {
+                Console.WriteLine("- " + plat);
+            }
+
+            Console.ReadLine();
+
+        }
+
+    }
+
+}
