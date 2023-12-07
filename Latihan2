@@ -1,0 +1,47 @@
+namespace Latihan2
+{
+
+    internal class Program
+    {
+
+        static double HitungIntervalMenit(double intervalDetik)
+        {
+            return intervalDetik / 60;
+        }
+
+        public static void Main()
+        {
+
+            int totalPelari;
+            string[] namaPelari;
+            double[,] interval;
+
+            Console.Write("Masukkan total pelari : ");
+            totalPelari = int.Parse(Console.ReadLine());
+
+            namaPelari = new string[totalPelari];
+            interval = new double[totalPelari, 2];
+
+            Console.WriteLine();
+            for (int i = 0; i < totalPelari; i++)
+            {
+                Console.Write("Masukkan nama pelari – " + (i + 1) + " : ");
+                namaPelari[i] = Console.ReadLine();
+                Console.Write("Interval lari dari pelari – " + (i + 1) + " (detik) : ");
+                interval[i, 0] = double.Parse(Console.ReadLine());
+                interval[i, 1] = HitungIntervalMenit(interval[i, 0]);
+            }
+
+            Console.WriteLine("\nNo\tNama\t\tIntv(detik)\tIntv(menit)");
+            for (int j = 0; j < totalPelari; j++)
+            {
+                Console.WriteLine((j + 1) + "\t" + namaPelari[j] + "\t\t" + (int) interval[j, 0] + "\t\t" + Math.Round(interval[j, 1], 2));
+            }
+
+            Console.ReadLine();
+
+        }
+
+    }
+
+}
