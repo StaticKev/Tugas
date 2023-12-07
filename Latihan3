@@ -1,0 +1,79 @@
+namespace Latihan3
+{
+    
+    internal class Program
+    {
+
+        static void hitungDetailBelanja
+            (
+            int[] harga, out int totalBelanja, out int pajak, out int biayaYangHarusDibayar
+            )
+        {
+            int tBelanja = 0;
+            for (int i = 0; i < harga.Length; i++) 
+            {
+                tBelanja += harga[i];
+            }
+            totalBelanja = tBelanja;
+
+            pajak = (int) (tBelanja * 3.0 / 100);
+
+            biayaYangHarusDibayar = totalBelanja + pajak;
+        }
+
+        public static void Main()
+        {
+
+            string[] buah = {"Manggis", "Pisang", "Apel", "Jeruk", "Semangka"};
+            int[] hargaSatuan = { 12_000, 9_000, 15_000, 14_000, 16_000};
+            int[] jumlah = {0, 0, 0, 0, 0};
+            int[] harga = {0, 0, 0, 0, 0};
+            int totalBelanja, pajak, biayaYangHarusDibayar;
+
+            string tambahBarang = "y";
+
+            Console.WriteLine("Masukkan barang yang akan dibeli !");
+            while (tambahBarang != "t")
+            {
+                Console.Write("Jenis buah yang dibeli (Manggis, Jeruk, Apel, Pisang, Semangka) : ");
+                string jenisBuah = Console.ReadLine();
+                Console.Write("Jumlah barang yang dibeli (kg) : ");
+                int jumlahBarang = int.Parse(Console.ReadLine());
+
+                for (int b = 0; b < buah.Length; b++)
+                {
+                    if (jenisBuah == buah[b])
+                    {
+                        jumlah[b] += jumlahBarang;
+                        harga[b] += jumlahBarang * hargaSatuan[b];
+                    }
+                }
+
+                Console.Write("Tambah barang lagi? (ketik `t` untuk mengakhiri) ");
+                tambahBarang = Console.ReadLine();
+
+            }
+
+            Console.WriteLine("\nRincian Belanja : ");
+            Console.WriteLine("Buah\t\tJumlah\t\tHarga");
+            for (int i = 0; i < jumlah.Length; i++)
+            {
+                if (jumlah[i] != 0)
+                {
+                    Console.WriteLine(buah[i] + "\t\t" + jumlah[i] + "\t\t" + harga[i]);
+                }
+            }
+
+            hitungDetailBelanja(harga, out totalBelanja, out pajak, out biayaYangHarusDibayar);
+
+            Console.WriteLine("\nTotal Belanja : " + totalBelanja);
+            Console.WriteLine("Pajak (3%) : " + pajak);
+            Console.WriteLine("Biaya yang harus dibayar : " + biayaYangHarusDibayar);
+
+            Console.ReadLine();
+
+        }
+
+    }
+
+}
