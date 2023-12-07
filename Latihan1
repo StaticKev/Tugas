@@ -1,0 +1,74 @@
+namespace Latihan1
+{
+
+    internal class Program
+    {
+
+        static int HitungTotalJamTerbang(int[] jamTerbangHarian)
+        {
+            int total = 0;
+
+            for (int i = 0; i < jamTerbangHarian.Length; i++)
+            {
+                total += jamTerbangHarian[i];
+            }
+
+            return total;
+        }
+
+        static double HitungRataRataJamTerbang(int totalJam)
+        {
+            double rataRata = Math.Round(totalJam / 7.0, 2);
+            return rataRata;
+        }
+
+        static string TentukanKategori(int totalJamTerbangMingguan)
+        {
+            if (totalJamTerbangMingguan < 30)
+            {
+                return "Kurang";
+            }
+            else if (totalJamTerbangMingguan >= 30 && totalJamTerbangMingguan <= 60)
+            {
+                return "Normal";
+            }
+            else
+            {
+                return "Tinggi";
+            }
+        } 
+
+        public static void Main()
+        {
+
+            string namaPilot, kategoriKinerja;
+            int[] jamTerbangHarian = new int[7];
+            int totalJamMingguan;
+            double rataRataJamMingguan;
+
+            Console.Write("Masukkan nama anda : Capt. ");
+            namaPilot = Console.ReadLine();
+
+            Console.WriteLine();
+            for (int i = 0; i < 7; i++)
+            {
+                Console.Write("Masukkan jam terbang hari ke – " + (i + 1) + " (jam) : ");
+                jamTerbangHarian[i] = int.Parse(Console.ReadLine());
+            }
+            Console.WriteLine();
+
+            totalJamMingguan = HitungTotalJamTerbang(jamTerbangHarian);
+            rataRataJamMingguan = HitungRataRataJamTerbang(totalJamMingguan);
+            kategoriKinerja = TentukanKategori(totalJamMingguan);
+
+            Console.WriteLine("Total Jam Terbang Mingguan : " + totalJamMingguan);
+            Console.WriteLine("Rata – rata jam Terbang Harian : " + rataRataJamMingguan);
+            Console.WriteLine("Kategori kinerja : " + kategoriKinerja);
+
+            Console.ReadLine();
+
+        }
+
+    }
+
+}
